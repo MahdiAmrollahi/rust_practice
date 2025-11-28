@@ -11,7 +11,7 @@
 use std::thread;
 
 /// This function returns a static string slice after a delay
-/// 
+///
 /// # Returns
 /// A static reference to a string slice "Hello, "
 fn msg_hello() -> &'static str {
@@ -36,9 +36,13 @@ fn msg_excited() -> &'static str {
 }
 
 fn main() {
-    let msg1= thread::spawn(||msg_hello());
-    let msg2= thread::spawn(||msg_thread());
-    let msg3= thread::spawn(||msg_excited());
-    let (msg1, msg2, msg3) = (msg1.join().unwrap(), msg2.join().unwrap(), msg3.join().unwrap());
+    let msg1 = thread::spawn(move || msg_hello());
+    let msg2 = thread::spawn(move || msg_thread());
+    let msg3 = thread::spawn(move || msg_excited());
+    let (msg1, msg2, msg3) = (
+        msg1.join().unwrap(),
+        msg2.join().unwrap(),
+        msg3.join().unwrap(),
+    );
     println!("{} {} {}", msg1, msg2, msg3);
 }
