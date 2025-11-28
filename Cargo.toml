@@ -11,4 +11,7 @@ path = "src/activitylib.rs"
 
 [dependencies]
 chrono = "0.4.42"
+colored = "3.0.0"
+crossbeam-channel = "0.5.15"
+thiserror = "2.0.17"
 
